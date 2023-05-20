@@ -1,5 +1,9 @@
 package com.example.model.flower_HW_1_2;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+
 import java.util.StringJoiner;
 
 /**
@@ -7,11 +11,15 @@ import java.util.StringJoiner;
  * @since 5/13/23
  */
 
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Plant {
     private String name;
     private Soil soil;
     private String origin;
+
+    @XmlElement(name = "visualParameters")
     private VisualParameters visualParameters;
+    @XmlElement(name = "growingTips")
     private GrowingTips growingTips;
     private MultiplyingType multiplyingType;
 
@@ -78,12 +86,12 @@ public class Plant {
     @Override
     public String toString() {
         return new StringJoiner(", ", Plant.class.getSimpleName() + "[", "]")
-           .add("name='" + name + "'")
-           .add("soil=" + soil)
-           .add("origin='" + origin + "'")
-           .add("visualParameters=" + visualParameters)
-           .add("growingTips=" + growingTips)
-           .add("multiplyingType=" + multiplyingType)
-           .toString();
+                .add("name='" + name + "'")
+                .add("soil=" + soil)
+                .add("origin='" + origin + "'")
+                .add("visualParameters=" + visualParameters)
+                .add("growingTips=" + growingTips)
+                .add("multiplyingType=" + multiplyingType)
+                .toString();
     }
 }

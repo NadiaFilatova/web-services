@@ -1,4 +1,4 @@
-package com.example.parser_HW_1_2;
+package com.example.parser_HW_1_2_3;
 
 import com.example.model.candy_HW_2.*;
 

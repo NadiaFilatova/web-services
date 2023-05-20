@@ -1,10 +1,15 @@
 package com.example.model.flower_HW_1_2;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlType;
+
 /**
  * @author Nadia  Filatova
  * @since 5/13/23
  */
-
+@XmlType
+@XmlAccessorType(XmlAccessType.FIELD)
 public final class FlowerConstants {
     private FlowerConstants() {
         throw new UnsupportedOperationException("Utility class");

@@ -1,5 +1,10 @@
 package com.example.model.flower_HW_1_2;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
+
 import java.util.StringJoiner;
 
 /**
@@ -7,6 +12,7 @@ import java.util.StringJoiner;
  * @since 5/13/23
  */
 
+@XmlAccessorType(XmlAccessType.FIELD)
 public class GrowingTips {
     private Integer temperature;
     private Boolean lovesLight;
@@ -21,24 +27,12 @@ public class GrowingTips {
         this.watering = watering;
     }
 
-    public Integer getTemperature() {
-        return temperature;
-    }
-
     public void setTemperature(Integer temperature) {
         this.temperature = temperature;
     }
 
-    public Integer getWatering() {
-        return watering;
-    }
-
     public void setWatering(Integer watering) {
         this.watering = watering;
-    }
-
-    public Boolean getLovesLight() {
-        return lovesLight;
     }
 
     public void setLovesLight(Boolean lovesLight) {

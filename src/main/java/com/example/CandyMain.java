@@ -3,7 +3,7 @@ package com.example;
 
 
 import com.example.model.candy_HW_2.Candy;
-import com.example.parser_HW_1_2.CandySTAXParser;
+import com.example.parser_HW_1_2_3.CandySTAXParser;
 
 import javax.xml.stream.XMLStreamException;
 import java.io.FileNotFoundException;
