@@ -18,6 +18,10 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
@@ -37,17 +41,20 @@ import java.util.Scanner;
 public class FlowerMain {
     private static final String XML_FILE_URI = "src/main/resources/greenhouse/greenhouse.xml";
     private static final String XSD_FILE_URI = "src/main/resources/greenhouse/greenhouse.xsd";
+    private static final String XSL_FILE_URI = "src/main/resources/greenhouse/greenhouse.xsl";
+    private static final String HTML_FILE_URI = "src/main/resources/greenhouse/greenHouse.html";
     private static final String SAX = "SAX";
     private static final String DOM = "DOM";
     private static final String STAX = "STAX";
     private static final String JAXB = "JAXB";
     private static final String XPATH = "XPath";
+    private static final String HTML = "HTML";
     private static final String EXIT = "exit";
 
     public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException, XMLStreamException, JAXBException, XPathExpressionException {
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            System.out.print("Choose an option for parsing: SAX/DOM/STAX/JAXB/XPath or exit: ");
+            System.out.print("Choose an option for parsing: SAX/DOM/STAX/JAXB/XPath or exit. When converting  XML to HTML, enter:HTML  ");
             String input = scanner.nextLine();
             switch (input) {
                 case SAX -> runSAX();
@@ -55,11 +62,25 @@ public class FlowerMain {
                 case STAX -> runSTAX();
                 case JAXB -> runJAXB();
                 case XPATH -> runXPath();
+                case HTML -> convertXMLtoHTML();
                 case EXIT -> {
                     return;
                 }
                 default -> System.out.println("Wrong input, try again");
             }
+        }
+    }
+
+    public static void convertXMLtoHTML() {
+        try {
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer(new StreamSource(XSL_FILE_URI));
+
+            Source xml = new StreamSource(XML_FILE_URI);
+            transformer.transform(xml, new StreamResult(HTML_FILE_URI));
+            System.out.println("Перетворення завершено. Результат збережений у файлі: " + HTML_FILE_URI);
+        } catch (TransformerException e) {
+            System.err.println("Помилка під час перетворення XML в HTML: " + e.getMessage());
         }
     }
 
