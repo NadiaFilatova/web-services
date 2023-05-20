@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-    <xsl:template match="/">
+    <xsl:template match="/flower">
         <html>
             <body>
                 <h2>Flower Plants</h2>
@@ -17,7 +17,8 @@
                         <th>Watering</th>
                         <th>Multiplying Type</th>
                     </tr>
-                    <xsl:for-each select="flower/plant">
+                    <xsl:for-each select="plant">
+                        <xsl:sort select="growingTips/temperature" data-type="number"/>
                         <tr>
                             <td><xsl:value-of select="name"/></td>
                             <td><xsl:value-of select="soil"/></td>
